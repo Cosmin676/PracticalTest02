@@ -5,6 +5,6 @@ public interface Constants {
 
     final public static boolean DEBUG = true;
     final public static String EMPTY_STRING = "";
-    final public static String WEB_SERVICE_ADDRESS = "https://api.coindesk.com/v1/bpi/currentprice/EUR.json";
+    final public static String WEB_SERVICE_ADDRESS = "https://worldtimeapi.org/api/timezone/Europe/Bucharest";
 
 }

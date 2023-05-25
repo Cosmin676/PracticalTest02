@@ -12,14 +12,16 @@ public class ClientThread extends Thread{
     private String address;
     private int port;
     private Socket socket;
+    private String key;
     private String value;
     private int mode;
 
-    public ClientThread(String adress, int port, String value, int mode) {
+    public ClientThread(String adress, int port, String key, String value, int mode) {
         // mode = 1 -> put
         // mode = 0 -> get
         this.address = adress;
         this.port = port;
+        this.key = key;
         this.value = value;
         this.mode = mode;
     }
@@ -40,9 +42,11 @@ public class ClientThread extends Thread{
             }
 
 
-//            printWriter.println(curency);
-//            printWriter.flush();
-//            printWriter.flush();
+            printWriter.println(key);
+            printWriter.flush();
+            printWriter.println(value);
+            printWriter.flush();
+            printWriter.println(mode);
 //            String weatherInformation;
 //            while ((weatherInformation = bufferedReader.readLine()) != null) {
 //                final String finalizedWeateherInformation = weatherInformation;

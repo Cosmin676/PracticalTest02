@@ -5,6 +5,8 @@
     <string name="get">Get</string>
     <string name="put">Put</string>
     <string name="connect">Connect</string>
+    <string name="key">key</string>
+    <string name="value">value</string>
     <string name="client">CLIENT</string>
     <string name="client_address">Address</string>
     <string name="client_port">Port</string>

@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText serverPortEditText = null;
@@ -20,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     // Client widgets
     private EditText clientAddressEditText = null;
     private EditText clientPortEditText = null;
-    private EditText getEditText = null;
-    private EditText putEditText = null;
+    private EditText keyEditText = null;
+    private EditText valueEditText = null;
     //    private Spinner informationTypeSpinner = null;
     private Button getWeatherForecastButton = null;
     private TextView weatherForecastTextView = null;
@@ -45,14 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            String value = putEditText.getText().toString();
-            if (value == null || value.isEmpty()){
+            String value = valueEditText.getText().toString();
+            String key = keyEditText.getText().toString();
+            if (key == null || key.isEmpty()){
                 Toast.makeText(getApplicationContext(), "[MAIN ACTIVITY] Parameters from client (city / information type) should be filled", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             clientThread = new ClientThread(
-                    clientAddress, Integer.parseInt(clientPort), value, 1);
+                    clientAddress, Integer.parseInt(clientPort), key, value, 1);
             clientThread.start();
         }
     }
@@ -74,14 +77,15 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            String value = putEditText.getText().toString();
-            if (value == null || value.isEmpty()){
+            String key = keyEditText.getText().toString();
+            String value = valueEditText.getText().toString();
+            if (key == null || key.isEmpty()){
                 Toast.makeText(getApplicationContext(), "[MAIN ACTIVITY] Parameters from client (city / information type) should be filled", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             clientThread = new ClientThread(
-                    clientAddress, Integer.parseInt(clientPort), value, 1);
+                    clientAddress, Integer.parseInt(clientPort), key, value, 1);
             clientThread.start();
         }
     }
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AndroidThreeTen.init(this);
         setContentView(R.layout.activity_main);
 
         serverPortEditText = (EditText)findViewById(R.id.server_port_edit_text);
@@ -125,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         clientAddressEditText = (EditText)findViewById(R.id.client_address_edit_text);
         clientPortEditText = (EditText)findViewById(R.id.client_port_edit_text);
 
-        getEditText = (EditText)findViewById(R.id.get_edit_text);
-        putEditText = (EditText)findViewById(R.id.put_edit_text);
+        keyEditText = (EditText)findViewById(R.id.key_edit_text);
+        valueEditText = (EditText)findViewById(R.id.value_edit_text);
 
         weatherForecastTextView = (TextView)findViewById(R.id.weather_forecast_text_view);
     }
